@@ -3,6 +3,7 @@ from player import Player
 
 # Declare all the rooms
 
+
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
