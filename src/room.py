@@ -21,3 +21,6 @@ class Room:
                 return item
         
         return None
+
+    def add_item(self, item):
+        self.items.append(item)
