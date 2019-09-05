@@ -7,21 +7,41 @@ from item import Item
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",
+                     [
+                         Item("Great Sword", "A very large sword"),
+                         Item("Great Shield", "A very large shield"),
+                         Item("Great Armor", "A very large armor")
+                     ]),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""",
+                     [
+                         Item("Sword", "A normal sword"),
+                         Item("Shield", "A normal shield")
+                     ]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""",
+                     [
+                         Item("Bow", "A normal bow, doesn't require arrow"),
+                         Item("Boots", "A cheap footwear")
+                     ]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""",
+                     [
+                         Item("Red Potion", "Heals your wounds"),
+                         Item("Green Potion", "Recovers your stamina")
+                     ]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""",
+                     [
+                         Item("Stone", "A piece of stone")
+                     ]),
 }
 
 
@@ -63,7 +83,7 @@ while not shouldexit:
     print(f"The player is at room {player.room.name:s}")
     print(f"{player.room.description:s}")
 
-    print("List of items in the room")
+    print("List of items in the room: ")
     for i in player.room.items:
         print(i.name)
 
@@ -93,8 +113,14 @@ while not shouldexit:
         else:
             print_no_room("s")
     elif pinput == "pick":
-        print("Which item would you like to pick")
-        
+        pinput = input("Enter the name of the item you'd like to pick: ")
+        item = player.room.pick_item(pinput)
+        if item != None:
+            player.items.append(item)
+            print(f"You've picked up {item.name:s}")
+            print(f"{item.description:s}")
+        else:
+            print(f"Item name {pinput:s} does not exist")
     else:
         print("Invalid command")
 
