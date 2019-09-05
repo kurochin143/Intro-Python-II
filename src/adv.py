@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -62,6 +63,10 @@ while not shouldexit:
     print(f"The player is at room {player.room.name:s}")
     print(f"{player.room.description:s}")
 
+    print("List of items in the room")
+    for i in player.room.items:
+        print(i.name)
+
     pinput = input("Please enter a command: ")
     if pinput == "q":
         print("Quitting")
@@ -87,6 +92,9 @@ while not shouldexit:
             player.room = player.room.s_to
         else:
             print_no_room("s")
+    elif pinput == "pick":
+        print("Which item would you like to pick")
+        
     else:
         print("Invalid command")
 

@@ -1,7 +1,5 @@
 
 class Item:
-    def __init__(self, name: str):
+    def __init__(self, name, description):
         self.name = name
-
-    def __str__(self):
-        return self.name
+        self.description = description
